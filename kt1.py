@@ -8,6 +8,7 @@ while(True):
             print(f"НЕТ, НИ РАЗУ С {random.randint(1930, 1950)} ГОДА!")
         else:
             print(f"НЕТ, НИ РАЗУ С {random.randint(1930, 1950)} ГОДА!")
+            counter = 0
     else:
         print("АСЬ?! ГОВОРИ ГРОМЧЕ, ВНУЧЕК!")
     if(counter == 3):
