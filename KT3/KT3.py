@@ -1,16 +1,14 @@
-import pandas as pd
 def get_books(name):
-    df = pd.read_csv(name, sep="|", header=0).values.tolist()
-    return df
+    with open(name, 'r', encoding='utf-8') as file:
+        lines = file.read().splitlines()
+    return list(map(lambda line: line.split('|'), lines[1:]))
 
-def filtered_books(books, title):
-    df = pd.DataFrame(books, columns=['isbn', 'title', 'author', 'quantity', 'price'])
-    df = df[df['title'].str.contains(title, case=False, na=False)]
-    return df
+def filtered_books(books, title_substring):
+    return list(filter(lambda book: title_substring.lower() in book[1].lower(),books))
 
 def mult(books):
-    return list(map(lambda b: (b[0], b[4] * b[5]), books))
+    return list(map(lambda book: (book[0], int(book[3]) * float(book[4])),books))
 
 books = get_books("books.csv")
-print(filtered_books(books,"python"))
+print(filtered_books(books, "python"))
 print(mult(books))
